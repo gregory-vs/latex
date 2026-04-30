@@ -1,0 +1,15 @@
+[0] Config.pm:307> INFO - This is Biber 2.17
+[0] Config.pm:310> INFO - Logfile is 'build/main.blg'
+[60] biber:340> INFO - === Thu Apr 30, 2026, 04:35:40
+[70] Biber.pm:418> INFO - Reading 'build/main.bcf'
+[108] Biber.pm:969> INFO - Using all citekeys in bib section 0
+[115] Biber.pm:4383> INFO - Processing section 0
+[122] Biber.pm:4574> INFO - Looking for bibtex file 'references/references.bib' for section 0
+[122] bibtex.pm:1713> INFO - LaTeX decoding ...
+[125] bibtex.pm:1518> INFO - Found BibTeX data source 'references/references.bib'
+[157] UCollate.pm:68> INFO - Overriding locale 'pt-BR' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[157] UCollate.pm:68> INFO - Overriding locale 'pt-BR' defaults 'variable = shifted' with 'variable = non-ignorable'
+[157] Biber.pm:4203> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'pt-BR'
+[157] Biber.pm:4209> INFO - No sort tailoring available for locale 'pt-BR'
+[161] bbl.pm:654> INFO - Writing 'build/main.bbl' with encoding 'UTF-8'
+[163] bbl.pm:757> INFO - Output to build/main.bbl

@@ -1,0 +1,76 @@
+\section{Estratégia de Validação}
+
+\subsection{Visão Geral da Estratégia}
+A estratégia de validação proposta combina duas abordagens complementares: execução em Shadow Mode e Golden Master Testing, com o objetivo de garantir a equivalência funcional entre o Rest legado e o sistema Integrador durante o processo de migração.
+
+Essa combinação permite validar o comportamento do novo sistema com base em dados reais de produção, sem impacto na experiência do usuário final, oferecendo uma base confiável para tomada de decisão sobre a migração das integrações.
+
+\subsection{Execução em Shadow Mode}
+A execução em Shadow Mode consiste na replicação de requisições reais para o Integrador em paralelo ao fluxo oficial executado pelo Rest.
+
+Nesse modelo:
+\begin{itemize}
+    \item O Rest continua sendo responsável pela resposta oficial ao usuário;
+    \item O Integrador processa as mesmas requisições de forma paralela e isolada;
+    \item Os resultados do Integrador não impactam o fluxo principal, sendo utilizados exclusivamente para fins de validação.
+\end{itemize}
+
+Essa abordagem permite avaliar o comportamento do Integrador em condições reais de uso, incluindo volume, diversidade de dados e cenários de borda, sem introduzir risco operacional.
+
+\subsection{Golden Master Testing}
+
+O Golden Master Testing utiliza o comportamento do sistema legado como referência para validação do novo sistema.
+
+Nesse contexto:
+\begin{itemize}
+    \item A resposta gerada pelo Rest é considerada a base de comparação;
+    \item A resposta gerada pelo Integrador é comparada com essa referência;
+    \item Divergências são identificadas e classificadas de forma estruturada.
+\end{itemize}
+
+\subsection{Processo de Validação}
+
+De forma simplificada, o processo de validação ocorre conforme o fluxo abaixo:
+
+\begin{enumerate}
+    \item O usuário realiza uma requisição normalmente;
+    \item O Rest processa a requisição e retorna a resposta oficial;
+    \item Em paralelo, a mesma requisição é executada no Integrador (Shadow Mode);
+    \item As respostas do Rest e do Integrador são capturadas;
+    \item O componente de comparação (Golden Master) analisa os resultados;
+    \item Divergências são registradas na camada de persistência;
+    \item Os dados ficam disponíveis para análise posterior via dashboard.
+\end{enumerate}
+
+\subsection{Classificação de Divergências}
+
+As divergências identificadas durante a comparação poderão ser classificadas de forma simplificada no MVP, por exemplo:
+
+\begin{itemize}
+    \item Sem divergência: respostas equivalentes dentro dos critérios definidos;
+    \item Divergência não crítica: diferenças que não impactam diretamente o comportamento do usuário ou o resultado final;
+    \item Divergência crítica: diferenças que impactam funcionalidade, disponibilidade, preço ou resultado de reservas.
+\end{itemize}
+
+\subsection{Classificação de Divergências}
+Para garantir a estabilidade do sistema durante a execução da estratégia de validação, serão adotadas as seguintes práticas:
+
+\begin{itemize}
+    \item Execução assíncrona do Shadow Mode, sem bloqueio do fluxo principal;
+    \item Definição de limites de execução (amostragem de requisições);
+    \item Controle por feature flags, permitindo ativação por locadora e/ou driver;
+    \item Isolamento de falhas, garantindo que erros no Integrador não afetem o Rest;
+    \item Definição de timeouts para execução paralela.
+\end{itemize}
+
+\subsection{Benefícios da Abordagem}
+A combinação de Shadow Mode com Golden Master Testing proporciona os seguintes benefícios:
+
+\begin{itemize}
+    \item Validação com dados reais de produção;
+    \item Redução significativa do risco de regressões;
+    \item Maior confiança na migração das integrações;
+    \item Identificação precoce de inconsistências;
+    \item Base objetiva para tomada de decisão sobre rollout.
+\end{itemize}
+

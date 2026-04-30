@@ -1,0 +1,44 @@
+\section{Contexto e Problema}
+
+\subsection{Contexto Atual}
+
+A arquitetura atual da empresa está em processo de evolução de um modelo predominantemente monolítico para uma arquitetura híbrida, na qual o monólito passa a assumir um papel mais estratégico como centralizador de informações e orquestrador de fluxos, enquanto componentes especializados são introduzidos para desacoplar responsabilidades específicas.
+
+Como parte dessa evolução, foi desenvolvido o sistema denominado Integrador, cuja função é atuar como gateway de integrações com fornecedores externos, especialmente locadoras de veículos. Esse novo componente tem como objetivo simplificar o desenvolvimento, manutenção e evolução das integrações, padronizando a comunicação com fornecedores, abstraindo complexidades específicas de cada integração e promovendo maior escalabilidade e governança técnica.
+
+Historicamente, as integrações com locadoras eram implementadas diretamente no monólito, o que resultava em um alto acoplamento, dificuldade de manutenção, baixa reutilização de componentes e maior complexidade para evolução contínua. O Integrador surge, portanto, como uma solução estruturante para resolver essas limitações ao longo do tempo.
+
+Atualmente, o Integrador já se encontra em produção e suporta diversas integrações ativas, operando de forma estável e agregando valor ao ecossistema. No entanto, ainda existem integrações legadas que permanecem no monólito e precisam ser migradas para o novo modelo, consolidando a arquitetura proposta.
+
+\subsection{Problemas Observados}
+
+Apesar dos avanços proporcionados pelo Integrador, o processo de migração das integrações existentes apresenta desafios relevantes, especialmente em dois aspectos principais:
+
+\begin{itemize}
+   \item Complexidade das regras de integração:
+   \begin{itemize}
+     \item Parte significativa das integrações existentes possui lógica de negócio complexa e está encapsulada em drivers específicos dentro do monólito. Essas regras envolvem particularidades de fornecedores, tratamentos específicos de dados, fluxos condicionais e exceções que dificultam a replicação fiel do comportamento no novo gateway. Atualmente, o processo de migração é realizado por meio de scripts pré-definidos, que são constantemente ajustados conforme novas necessidades surgem, o que evidencia a ausência de um processo estruturado e previsível.
+   \end{itemize}
+   \item Ausência de um mecanismo robusto de validação de integração:
+   \begin{itemize}
+     \item O principal desafio identificado está na validação da equivalência entre o comportamento do sistema legado e o novo gateway durante a migração. Atualmente, essa validação depende majoritariamente de testes manuais, análises pontuais e monitoramento reativo em produção. Essa abordagem limita a capacidade de identificar divergências de forma sistemática, reduz a confiança no processo de migração e aumenta o risco de regressões funcionais.
+   \end{itemize}
+ \end{itemize}
+
+
+
+
+
+\subsection{Impacto no Negócio}
+
+A ausência de um processo estruturado de validação durante a migração gera impactos diretos e indiretos no negócio, dentre os quais se destacam:
+
+\begin{itemize}
+   \item Risco operacional elevado, com possibilidade de inconsistências em fluxos críticos como busca, precificação, disponibilidade e confirmação de reservas;
+   \item Impacto na experiência do usuário, decorrente de falhas silenciosas ou divergências entre o comportamento esperado e o efetivamente entregue;
+   \item Potencial perda de receita, associada a falhas em reservas, indisponibilidade de ofertas ou erros de integração com fornecedores;
+   \item Baixa previsibilidade na migração, dificultando o planejamento e a priorização de integrações a serem migradas;
+   \item Aumento do custo operacional, devido à necessidade de retrabalho, correções emergenciais e maior dependência de validações manuais.
+\end{itemize}
+
+Diante desse cenário, torna-se evidente a necessidade de um mecanismo estruturado que permita validar, de forma automatizada e confiável, a equivalência entre os sistemas durante o processo de migração, reduzindo riscos e aumentando a eficiência da transição arquitetural.

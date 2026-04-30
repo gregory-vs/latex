@@ -1,0 +1,80 @@
+\section{Roadmap de Implementação}
+
+\subsection{Visão Geral}
+
+A implementação da solução será realizada de forma incremental, priorizando a entrega rápida de valor e a redução de riscos no processo de migração das integrações.
+
+O roadmap foi estruturado em fases, permitindo validar a abordagem proposta em um escopo controlado antes de expandir sua aplicação para outras locadoras e fluxos.
+
+\subsection{Estratégia de Execução}
+
+Para garantir foco e eficiência na execução, propõe-se a criação de uma squad temporária dedicada, composta pelos desenvolvedores atualmente envolvidos no contexto de integrações.
+
+Essa squad terá como objetivo atuar exclusivamente na evolução do processo de migração, incluindo:
+
+\begin{itemize}
+    \item Desenvolvimento do módulo de validação (Shadow Mode + Golden Master);
+    \item Suporte à migração de integrações existentes;
+    \item Evolução incremental da solução conforme aprendizado.
+    \item Manutenção da esteira presente, culminando na continuação das entregas de tarefas extras sem necessidade de interromper quaisquer atividades.
+\end{itemize}
+
+A proposta não implica aumento de capacidade, mas sim uma reorganização temporária do time, visando reduzir o contexto paralelo de trabalho e acelerar a entrega.
+
+Após a estabilização do sistema e conclusão das principais migrações, a squad poderá ser dissolvida, retornando ao modelo organizacional atual.
+
+\subsection{Fases de Implementação}
+
+\vspace{0.5em}
+Fase 1 - Estruturação inicial
+\begin{itemize}
+    \item Definição da arquitetura do módulo de validação;
+    \item Implementação básica do Shadow Mode;
+    \item Captura das respostas do Rest e do Integrador;
+    \item Implementação inicial do comparador (Golden Master);
+    \item Persistência básica dos resultados.
+\end{itemize}
+
+Objetivo: validar a viabilidade técnica da solução.
+
+\vspace{0.5em}
+Fase 2 — Validação controlada
+\begin{itemize}
+    \item Aplicação do MVP em uma locadora/driver específico;
+    \item Execução com volume controlado de requisições (amostragem);
+    \item Identificação e análise de divergências;
+    \item Ajuste das regras de comparação.
+\end{itemize}
+
+Objetivo: validar a abordagem em cenário real.
+
+\vspace{0.5em}
+Fase 3 — Expansão gradual
+\begin{itemize}
+    \item Ampliação para novos fluxos (ex: busca, reservar, cancelar, visualizar);
+    \item Inclusão de novas locadoras no processo de validação;
+    \item Evolução da classificação de divergências;
+    \item Melhorias na persistência e estrutura dos dados.
+\end{itemize}
+
+Objetivo: escalar a solução de forma controlada.
+
+\vspace{0.5em}
+Fase 4 — Suporte à migração
+\begin{itemize}
+    \item Uso do sistema como base para decisões de migração;
+    \item Execução de validações contínuas até estabilização;
+    \item Apoio à conclusão da migração das integrações restantes.
+\end{itemize}
+
+Objetivo: garantir migração segura e confiável.
+
+\vspace{0.5em}
+Fase 5 — Evolução para observabilidade contínua
+\begin{itemize}
+    \item Estruturação do dashboard com métricas consolidadas;
+    \item Evolução da solução para uso contínuo após migração;
+    \item Integração com outras iniciativas de observabilidade.
+\end{itemize}
+
+Objetivo: transformar o sistema em um ativo permanente.

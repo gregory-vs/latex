@@ -1,0 +1,37 @@
+\documentclass[12pt,a4paper]{article}
+
+\input{config/features}
+\input{preamble/packages}
+\input{preamble/commands}
+\input{config/metadata}
+
+\title{\projectTitle}
+\author{\projectAuthor}
+\date{\projectDate}
+
+\begin{document}
+
+\ifuseCover
+  \input{modules/00-capa}
+\fi
+
+\ifuseSummary
+  \input{modules/00-sumario}
+\fi
+
+\input{modules/01-contexto-e-problema}
+\input{modules/02-objetivo-sistema}
+\input{modules/03-visao-da-solucao}
+\input{modules/04-stakeholders-e-impacto}
+\input{modules/05-arquitetura-conceitual}
+\input{modules/06-escopo-mvp}
+\input{modules/07-estrategia-de-validacao}
+\input{modules/08-riscos-e-mitigacoes}
+\input{modules/09-roadmap-de-implementacao}
+\input{modules/10-resultados-esperados}
+
+\ifuseReferences
+  \input{modules/99-referencias}
+\fi
+
+\end{document}

@@ -1,0 +1,55 @@
+\section{Escopo do MVP}
+
+\subsection{Objetivo do MVP}
+O objetivo do MVP é viabilizar a validação segura da migração de integrações de locadoras do Rest para o Integrador, por meio da execução em Shadow Mode e comparação estruturada dos resultados.
+
+Neste primeiro momento, o foco não é construir uma plataforma completa de observabilidade, mas sim implementar os elementos essenciais que permitam reduzir o risco das migrações e aumentar a confiança no processo.
+
+\subsection{Funcionalidades incluídas}
+O MVP contemplará as seguintes funcionalidades:
+\begin{itemize}
+    \item Execução em Shadow Mode para um conjunto controlado de requisições;
+    \item Captura das respostas do Rest e do Integrador para o mesmo fluxo;
+    \item Implementação do componente de comparação (Golden Master), com validação básica de equivalência entre respostas;
+    \item Persistência dos resultados das comparações para análise posterior;
+    \item Identificação de divergências com classificação simples (ex: divergente vs não divergente);
+    \item Suporte à ativação controlada por locadora e/ou fluxo (feature flag ou configuração equivalente).
+\end{itemize}
+
+\subsection{Escopo funcional inicial}
+
+Para garantir foco e viabilidade, o MVP será aplicado inicialmente a:
+\begin{itemize}
+    \item Um subconjunto de locadoras selecionadas;
+    \item Um volume controlado de requisições (amostragem).
+\end{itemize}
+
+Essa abordagem permite validar a efetividade da solução em um cenário real, reduzindo riscos e complexidade.
+
+\subsection{Itens fora do escopo do MVP}
+Os seguintes itens não fazem parte do escopo inicial e poderão ser considerados em evoluções futuras:
+\begin{itemize}
+    \item Dashboard completo com métricas de negócio avançadas;
+    \item Sistema de alertas e notificações;
+    \item Análise detalhada de divergências com regras complexas;
+\end{itemize}
+
+\subsection{Estratégia de implementação}
+A implementação do MVP será realizada de forma incremental, priorizando:
+\begin{itemize}
+    \item Baixo impacto no fluxo principal do sistema;
+    \item Execução assíncrona e isolada do Shadow Mode;
+    \item Facilidade de ativação e desativação da funcionalidade;
+    \item Evolução progressiva do escopo, conforme validação dos resultados.
+\end{itemize}
+
+\subsection{Critério de sucesso do MVP}
+O MVP será considerado bem-sucedido quando for possível:
+\begin{itemize}
+    \item Executar validações em Shadow Mode para pelo menos uma locadora;
+    \item Identificar e analisar divergências entre o Rest e o Integrador de forma estruturada;
+    \item Obter confiança suficiente para apoiar a decisão de migração de um fluxo específico;
+    \item Demonstrar redução de risco no processo de migração.
+\end{itemize}
+
+O MVP foi desenhado para maximizar aprendizado e redução de risco com o menor esforço possível, permitindo validar a abordagem antes de expandir o escopo da solução.

@@ -1,0 +1,15 @@
+\section{Objetivo do Sistema}
+
+O objetivo deste sistema é projetar e implementar um módulo de observabilidade e validação de integrações, acoplado ao monólito legado e ao sistema Integrador, com a finalidade de apoiar o processo de migração das integrações de locadoras de forma segura, controlada e orientada por evidências.
+
+Este módulo deverá permitir a validação sistemática da equivalência entre o comportamento das integrações existentes no monólito e suas respectivas implementações no Integrador, reduzindo riscos associados à migração e aumentando a confiabilidade das decisões de rollout.
+
+Para isso, o sistema será baseado em uma abordagem de execução paralela dos fluxos de integração, na qual requisições reais poderão ser processadas simultaneamente pelos dois sistemas, permitindo a comparação estruturada dos resultados obtidos. Essa estratégia, alinhada aos conceitos de Golden Master Testing e Shadow Mode, possibilita identificar divergências de comportamento de forma proativa, antes que impactem o ambiente produtivo.
+
+Assim, o principal propósito desse sistema deverá ser atuar como um mecanismo de suporte ao processo de migração já existente, integrando-se ao fluxo operacional atual sem substituir as ferramentas de migração em uso, como scripts e rotinas previamente estabelecidas. Dessa forma, busca-se potencializar o processo atual, agregando uma camada adicional de validação e observabilidade.
+
+No curto prazo, o foco principal do sistema é viabilizar a migração segura das integrações ainda presentes no monólito, oferecendo visibilidade sobre a qualidade e consistência das implementações no Integrador.
+
+No médio e longo prazo, o sistema deverá evoluir para uma plataforma mais abrangente de observabilidade das integrações, permitindo o acompanhamento contínuo do desempenho operacional das locadoras, incluindo métricas técnicas e de negócio, como taxas de sucesso, erros, latência, disponibilidade e impacto financeiro.
+
+Adicionalmente, o sistema poderá ser complementado por ferramentas de automação de testes ponta a ponta, como Playwright, com o objetivo de validar fluxos completos sob a perspectiva do usuário final, reforçando a confiabilidade do ecossistema como um todo.

@@ -1,0 +1,60 @@
+\section{Riscos e Mitigações}
+
+A implementação da solução proposta envolve a introdução de novos componentes e padrões de execução no ecossistema atual, o que pode gerar riscos técnicos e operacionais. Abaixo estão os principais riscos identificados, bem como as estratégias de mitigação associadas.
+
+\subsection{Impacto de performance no sistema legado}
+
+A execução em Shadow Mode implica na replicação de requisições para o Integrador, o que pode aumentar o consumo de recursos (CPU, memória e rede) no monólito.
+
+\vspace{0.5em}
+Mitigação:
+
+\begin{itemize}
+    \item Execução assíncrona das chamadas em Shadow Mode, sem bloqueio do fluxo principal;
+    \item Definição de limites de execução por amostragem;
+    \item Monitoramento contínuo do impacto em produção;
+    \item Possibilidade de desativação imediata via feature flag.
+\end{itemize}
+
+\subsection{Aumento de latência no fluxo do usuário}
+
+Caso a execução em Shadow Mode não seja corretamente isolada, existe o risco de aumento de latência percebida pelo usuário.
+
+\vspace{0.5em}
+Mitigação:
+
+\begin{itemize}
+    \item Garantia de execução totalmente paralela e não bloqueante;
+    \item Isolamento do fluxo de validação em relação à resposta oficial;
+    \item Definição de timeouts agressivos para execução paralela;
+    \item Testes controlados antes de expansão da execução.
+\end{itemize}
+
+\subsection{Volume elevado de dados gerados}
+
+A captura e persistência de dados de execução e comparação pode gerar um volume significativo de informações, impactando armazenamento e processamento.
+
+\vspace{0.5em}
+Mitigação:
+
+\begin{itemize}
+    \item Armazenamento apenas de informações relevantes para análise;
+    \item Uso de amostragem para controle de volume;
+    \item Estratégias de retenção e expurgo de dados;
+    \item Evolução gradual da coleta conforme necessidade.
+\end{itemize}
+
+\subsection{Falhas no Integrador impactando o Shadow Mode}
+
+Instabilidades no Integrador podem gerar falhas no processo de validação, comprometendo a coleta de dados.
+
+\vspace{0.5em}
+Mitigação:
+
+\begin{itemize}
+    \item Isolamento completo de falhas no Shadow Mode;
+    \item Uso de circuit breakers para evitar sobrecarga;
+    \item Registro de falhas como parte da análise;
+    \item Garantia de que falhas não impactem o fluxo principal.
+\end{itemize}
+

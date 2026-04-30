@@ -1,0 +1,56 @@
+\section{Visão da Solução}
+
+\subsection{Visão Geral da Solução}
+
+A solução proposta consiste na implementação de um módulo de observabilidade e validação de integrações, projetado para atuar de forma transversal entre o monólito legado (Rest) e o sistema Integrador, com o objetivo de viabilizar migrações seguras e orientadas por evidências.
+
+A abordagem central da solução baseia-se na execução paralela dos fluxos de integração, permitindo que requisições reais sejam processadas simultaneamente pelos dois sistemas. A partir dessa execução, os resultados são coletados, comparados e analisados, possibilitando a identificação de divergências de comportamento de forma proativa, antes que impactem o ambiente produtivo.
+
+Dessa forma, a solução transforma o processo de migração de um modelo baseado em testes manuais e validações pontuais para um modelo estruturado, contínuo e mensurável.
+
+\subsection{Abordagem de Validação}
+
+A validação das integrações será realizada por meio de uma combinação das abordagens de Shadow Mode e Golden Master Testing.
+
+No Shadow Mode, o sistema permite que o fluxo do Integrador seja executado em paralelo ao fluxo do Rest, sem interferir na resposta final ao usuário. Isso possibilita a coleta de dados reais de execução em produção, sem introduzir riscos operacionais.
+
+Sobre esses dados, aplica-se o conceito de Golden Master Testing, no qual os resultados do sistema legado são utilizados como referência para comparação com os resultados produzidos pelo Integrador. Essa comparação permite identificar inconsistências, desvios de comportamento e possíveis regressões de forma sistemática.
+
+Essa abordagem garante maior confiança no processo de migração, permitindo decisões de rollout baseadas em evidências concretas.
+
+\subsection{Componentes da Solução}
+
+A solução é composta pelos seguintes elementos principais:
+
+\begin{itemize}
+    \item Mecanismo de execução paralela (Shadow Mode), responsável por permitir a execução simultânea dos fluxos de integração;
+    \item Componente de comparação (Golden Master), responsável por analisar e identificar divergências entre os resultados obtidos;
+    \item Camada de persistência, responsável por armazenar os dados de execução e comparação;
+    \item Módulo de visualização, responsável por apresentar informações consolidadas por meio de dashboards e relatórios;
+    \item Mecanismos de coleta de métricas, permitindo acompanhar indicadores técnicos e de negócio associados às integrações.
+\end{itemize}
+
+Esses componentes atuam de forma integrada, formando uma camada de validação e observabilidade independente do fluxo principal de atendimento ao usuário.
+
+\subsection{Limites e Integrações}
+
+A solução proposta não altera nem substitui os sistemas existentes, atuando como um mecanismo complementar ao ecossistema atual.
+
+Não fazem parte do escopo da solução:
+
+\begin{itemize}
+    \item A lógica de negócio das integrações com locadoras;
+    \item A implementação ou manutenção dos drivers de integração;
+    \item Os mecanismos de execução dos scripts de migração já existentes.
+\end{itemize}
+
+O sistema integra-se ao Rest e ao Integrador, consumindo e analisando informações geradas por esses sistemas, sem impactar diretamente a resposta ao usuário final.
+
+\subsection{Evolução da Solução}
+
+Inicialmente, a solução será focada no suporte à migração das integrações, com ênfase na validação comparativa entre os sistemas.
+
+Em uma segunda etapa, a solução poderá evoluir para uma plataforma contínua de observabilidade das integrações, permitindo o monitoramento do desempenho operacional das locadoras e o acompanhamento de métricas relevantes para o negócio.
+
+Essa evolução permitirá ampliar o valor da solução, transformando-a de um mecanismo de suporte à migração em um ativo estratégico para a operação das integrações.
+
