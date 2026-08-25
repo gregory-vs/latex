@@ -1,0 +1,105 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Geração de Dados}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/classe_digito_0_classe_digito_1.png}
+  \caption{Distribuição das classes dígito 0 e dígito 1 após projeção PCA (com médias marcadas).}
+  \label{fig:dristribuicao_classes}
+\end{figure}
+
+Para realizar os experimentos deste exercício, selecionei o dataset \textit{load\_digits}\footnote{O dataset \textit{load\_digits} faz parte da biblioteca \texttt{scikit-learn} e contém 1797 imagens em escala de cinza (8×8 pixels) representando dígitos manuscritos de 0 a 9. Cada amostra é uma imagem 8x8 achatada em um vetor com 64 números e cada número indica quão escuro está aquele pixel (quanto mais alto, mais “preto” o pixel).}. Este dataset é um dataset clássico de reconhecimento de dígitos manuscritos. Ele foi criado para treinar e testar modelos de classificação visual — ou seja, algoritmos que “leem” números escritos à mão. 
+
+Para nos adequar à metodologia proposta, utilizaremos LDA e QDA para classificar imagens — ou seja, prever qual dígito a imagem representa, com base no padrão de pixels. Além disso, reduziremos a dimensionalidade utilizando PCA, para continuar em duas dimensões de acordo com o modelo proposto.
+
+Por fim, selecionamos as classes dígito 0 e dígito 1 para visualizar melhor o comportamento LDA/QDA (contrapondo os antigos "classe 1 e classe 2").
+
+\section{Treinamento e Avaliação dos Classificadores }
+
+\subsection{Classificador LDA}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/accuracy_lda.png}
+  \caption{Acurácia do classificador LDA.}
+  \label{fig:lda_accuracy}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/fronteira_decisao_LDA.png}
+  \caption{Fronteira de decisão do classificador LDA.}
+  \label{fig:lda_frontier}
+\end{figure}
+
+\subsection{Classificador QDA}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/accuracy_qda.png}
+  \caption{Acurácia do classificador QDA.}
+  \label{fig:qda_accuracy}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/fronteira_decisao_QDA.png}
+  \caption{Fronteira de decisão do classificador QDA.}
+  \label{fig:qda_frontier}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/comparativo_fronteiras_decisao.png}
+  \caption{Fronteiras de decisão sobrepostas.}
+  \label{fig:compare_both}
+\end{figure}
+
+\section{Análise e Discussão }
+
+\subsection{Curva ROC}
+
+A curva ROC (Característica de Operação do Receptor - Receiver Operating Characteristic) é um gráfico de desempenho utilizado para avaliar classificadores binários. Em nosso exemplo, um caso de uso da curva ROC seria para distinguir entre o digito 0 do digito 1.
+
+Levando em consideração que os classificadores que estamos avaliando não gera apenas respostas binárias, produzindo um valor continuo de confiança (função discriminante), a curva ROC é feita variando o limiar usado para decidir o ponto de corte entre as classes. A junção dessas variações vira a curva ROC.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{figures/Curva_ROC_ex.svg.png}
+  \caption{Exemplo de curva ROC}
+  \label{fig:roc_example}
+\end{figure}
+
+Para nosso experimento, geramos a seguinte curva ROC:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/roc_experimento.png}
+  \caption{Curvas ROC LDA vs QDA}
+  \label{fig:roc_experiment}
+\end{figure}
+
+Assim, pode-se observar um comportamento interessante na plotagem dessas curvas. Nossa curva sobe com a taxa de verdadeiros positivos (TPR) verticalmente até o 1 e logo em seguida segue horizontalmente ate que nossa taxa de falsos positivos (FPR)  chegue também em 1. Isso significa que os classificadores estão avaliando praticamente todas as amostras corretamente, com quase nenhum falso positivo. Este comportamento pode ser explicado pelo contexto em que estamos inseridos, levando em consideração que filtramos apenas os digitos 1 e 0, o modelo está resolvendo um problema binário extremamente simples: distinguir zeros de uns em imagens de 8x8 pixels. Após aplicarmos o PCA no inicio do experimento, os pontos das duas classes formaram dois grupos muito bem separados, influenciando na precisão do modelo.
+
+\section{Conclusão}
+
+Por fim, analisando comparativamente, ambos os classificadores apresentaram resultados satisfatórios para este dataset. Isso é comprovado pela alta acurácia apresentada tanto por LDA (98,15\%) quanto por QDA (98,15\%), no entanto, a curva ROC nos mostra que o LDA teve um desempenho ligeiramente mais estável e simples, o que o torna preferível em nossa análise. Além da alta precisão, o LDA produziu uma fronteira linear que separa perfeitamente as duas classes, enquanto o QDA gera uma fronteira levemente curva, porém, sem ganho de desempenho. 
+
+Como os dígitos 0 e 1 são naturalmente lineares e bem separados no espaço PCA, a fronteira linear do LDA é suficiente e mais generalizável.
+
+O classificador QDA é mais vantajoso quando os grupos são mais irregulares, com covariâncias diferentes e quando você tem dados suficientes para estimar as diferenças com segurança, por exemplo, numa análise de reconhecimento de fala, para distinguir fonemas com base em espectro de frequencia, já que o QDA consegue se ajustar com as fronteiras curvas entre grupos de sons. 
+
+Outro caso de uso do LDA seria análise de crédito, para classificação de clientes como adimplentes ou inadimplentes, tendo em vista que o LDA ajuda a construir modelos mais simples, rápidos e fáceis de explicar.
+
+Mudando o centro da classe dígito 1 em +3, +3, temos o seguinte resultado:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/centro_deslocado 1.png}
+  \caption{Fronteiras de decisão com centro deslocado}
+  \label{fig:centro_deslocado1}
+\end{figure}
+
+Portanto, observa-se que as duas classes tornam-se completamente separáveis, eliminando praticamente toda a sobreposição entre elas. A fronteira de decisão do LDA, linear por definição, passa a dividir as classes de forma exata, resultando em acurácia de 100\%.
+
+Já o QDA, embora produza uma fronteira levemente curva, também obtém desempenho próximo do ideal (99,07\%), mas com maior complexidade e sem ganho efetivo de precisão.
+
+Esse experimento evidencia que, quando as distribuições das classes são bem separadas e aproximadamente lineares, o LDA é não apenas suficiente, mas também mais eficiente e generalizável do que o QDA.

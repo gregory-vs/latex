@@ -1,0 +1,96 @@
+\documentclass[11pt]{article}
+
+\renewcommand{\rmdefault}{phv} % Arial
+\renewcommand{\sfdefault}{phv} % Arial
+
+% Idioma e encoding
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}  
+
+% Matemática
+\usepackage{amsmath, xparse}
+
+% Código
+\usepackage[dvipsnames]{xcolor}
+\usepackage{minted}
+\usepackage{fvextra} % precisa para quebra de página
+\setminted{
+    breaklines=true,      % quebra linhas longas
+    breakanywhere=true,   % quebra em qualquer ponto se precisar
+    breaksymbolleft={},   % remove símbolo feio de quebra
+    linenos               % números de linha
+}
+
+% Figuras e gráficos
+\usepackage{graphicx}
+\usepackage{svg}
+\usepackage{subcaption} % substitui subfigure
+
+% Layout
+\usepackage{geometry}
+\geometry{a4paper,nohead,left=2cm,right=2cm,top=2.2cm,bottom=2cm}
+
+\usepackage{setspace}
+\onehalfspace
+
+\usepackage{indentfirst} % Identa depois de section
+\setlength{\parskip}{1em} % espaço entre parágrafos
+
+% Listas, tabelas e colunas
+\usepackage{multicol,multirow,booktabs,array,ltablex,threeparttablex}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{Z}{>{\centering\arraybackslash}X}
+\newcolumntype{s}{>{\hsize=.5\hsize}Y}
+\newcolumntype{B}{>{\hsize=2\hsize}Y}
+\newcolumntype{S}{>{\hsize=.8\hsize}Y}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+% Notas de rodapé especiais
+\newcommand{\mtnote}[1]{\textsuperscript{\TPTtagStyle{#1}}}
+
+% Outros utilitários
+\usepackage{caption}
+\captionsetup{width=\textwidth}
+\usepackage[section]{placeins} % Float barrier
+\usepackage{titlesec}
+\usepackage{url}
+\usepackage{float}
+\usepackage{adjustbox}
+\usepackage{pdflscape}
+\usepackage{dirtree}
+\usepackage{comment}
+\usepackage{siunitx}
+\sisetup{locale = FR}
+
+% Citações
+\usepackage[numbers,sort]{natbib}
+
+% Espaçamento de títulos
+\titlespacing*{\section}{0pt}{10pt}{0pt}
+\titleformat{\subsection}
+{\normalsize\bfseries}{\thesubsection}{1em}{}[]
+
+% Regras horizontais coloridas
+\newcommand{\HorRule}[1]{\color{#1} \rule{\linewidth}{2pt}}
+
+% Outros comandos
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcommand{\TODO}[1]{\textcolor{red}{#1}}
+
+%--------------------------------------------------------------------
+% Dados do relatório
+%--------------------------------------------------------------------
+\newcommand{\TITULO}{Relatório - Treinamento e Comparação de Classificadores LDA e QDA}
+\newcommand{\RELATORIO}{Aprendizado de máquina}
+%--------------------------------------------------------------------
+
+\begin{document}
+\input{capa}
+\thispagestyle{empty}
+\newpage
+
+%\input{tex/sumario}
+\input{tex/texto}
+
+\end{document}

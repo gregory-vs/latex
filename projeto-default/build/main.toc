@@ -1,0 +1,8 @@
+\babel@toc {brazil}{}\relax 
+\contentsline {section}{\numberline {1}Geração de Dados}{1}{}%
+\contentsline {section}{\numberline {2}Treinamento e Avaliação dos Classificadores }{1}{}%
+\contentsline {subsection}{\numberline {2.1}Classificador LDA}{1}{}%
+\contentsline {subsection}{\numberline {2.2}Classificador QDA}{2}{}%
+\contentsline {section}{\numberline {3}Análise e Discussão }{3}{}%
+\contentsline {subsection}{\numberline {3.1}Curva ROC}{3}{}%
+\contentsline {section}{\numberline {4}Conclusão}{4}{}%
